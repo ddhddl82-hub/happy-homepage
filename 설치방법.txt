@@ -1,0 +1,32 @@
+행복한 홈페이지 v15 설치 순서
+
+1. GitHub 업로드
+- 이 압축을 풀고 happy-homepage 저장소 최상단에 전체 파일을 덮어씁니다.
+- Commit changes를 누릅니다.
+
+2. Cloudflare Worker 코드
+- Cloudflare > Workers & Pages > happy-homepage-upload
+- Edit code를 누릅니다.
+- worker/worker.js 전체를 붙여넣고 Deploy합니다.
+
+3. Cloudflare 비밀변수 1개 추가
+- Settings > Variables and Secrets
+- ADMIN_KEY를 Secret으로 추가합니다.
+- 값은 본인만 아는 긴 비밀번호로 정합니다.
+- 이미 추가한 GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO, GITHUB_BRANCH, ALLOWED_ORIGIN은 그대로 둡니다.
+
+4. 관리자 연결
+- 배포된 Worker 주소를 복사합니다. 예: https://happy-homepage-upload.xxxxx.workers.dev
+- 홈페이지의 /admin/ 으로 들어갑니다.
+- 클라우드 연결 메뉴에서 Worker 주소와 ADMIN_KEY 비밀번호를 입력합니다.
+- 연결정보 저장 > 연결 테스트를 누릅니다.
+
+5. 사용
+- 사진을 선택하면 자동으로 1600px WebP로 압축되어 GitHub assets/gallery/연도/월 폴더에 올라갑니다.
+- 글과 사진을 다 바꾼 뒤 전체 저장을 누릅니다.
+- GitHub Pages 반영에는 보통 1~3분 걸립니다.
+
+보안
+- GitHub 토큰은 홈페이지에 입력하지 않습니다.
+- 토큰은 Cloudflare Secret에만 보관됩니다.
+- ADMIN_KEY도 코드에 쓰지 않습니다.
