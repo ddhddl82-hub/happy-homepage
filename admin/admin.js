@@ -24,7 +24,7 @@ function compress(file){
 }
 function setPath(o,p,v){const a=p.split('.');let x=o;a.slice(0,-1).forEach(k=>x=x[k]);x[a.at(-1)]=v}
 function getPath(o,p){return p.split('.').reduce((x,k)=>x&&x[k],o)}
-async function preview(img,ref,fallback='../assets/book-room.jpg'){img.src=await IMG.url(ref)||fallback}
+async function preview(img,ref,fallback='../assets/book-room.jpg'){const u=await IMG.url(ref);img.src=u?(CMS.publicPath?CMS.publicPath(u):u):fallback}
 
 async function bindBasics(){
  heroEyebrow.value=data.hero.eyebrow;heroTitle.value=data.hero.title;heroSubtitle.value=data.hero.subtitle;
@@ -68,7 +68,7 @@ document.addEventListener('click',async e=>{const b=e.target.closest('button');i
 
 async function migrateLegacyImages(){
  let changed=false;
- const refs=[['hero','image'],['program','image1'],['program','image2'],['program','image3'],['greeting','image']];
+ const refs=[['hero','image'],['greeting','image']];
  for(const [a,b] of refs){const v=data[a][b];if(v?.startsWith('data:image')){data[a][b]=await IMG.put(await IMG.dataUrlToBlob(v));changed=true}}
  for(const type of ['special','spaces','gallery'])for(const item of data[type])if(item.image?.startsWith('data:image')){item.image=await IMG.put(await IMG.dataUrlToBlob(item.image));changed=true}
  if(changed){CMS.set(data);toast('기존 사진을 대용량 저장소로 옮겼어요.')}
@@ -76,10 +76,27 @@ async function migrateLegacyImages(){
 function save(){collectBasics();try{CMS.set(data);toast('저장했습니다. 홈페이지에 반영됐어요.')}catch(e){console.error(e);alert('설정 저장 중 오류가 생겼습니다.') }}
 saveTop.onclick=save;
 
+const WORKER_DEFAULT='https://happy-homepage-upload.ddhddl82.workers.dev';
+const workerUrlEl=document.getElementById('workerUrl');
+const adminKeyEl=document.getElementById('adminKey');
+const publishStatus=document.getElementById('publishStatus');
+workerUrlEl.value=localStorage.getItem('happyWorkerUrl')||WORKER_DEFAULT;
+adminKeyEl.value=sessionStorage.getItem('happyAdminKey')||'';
+workerUrlEl.addEventListener('change',()=>localStorage.setItem('happyWorkerUrl',workerUrlEl.value.trim()));
+adminKeyEl.addEventListener('change',()=>sessionStorage.setItem('happyAdminKey',adminKeyEl.value));
+
+function status(message,state=''){publishStatus.textContent=message;publishStatus.dataset.state=state}
+function blobToBase64(blob){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result).split(',')[1]);r.onerror=reject;r.readAsDataURL(blob)})}
+function uniqueImagePath(){const d=new Date();const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0');const id=(crypto.randomUUID?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2));return `assets/uploads/${y}/${m}/${id}.webp`}
+async function api(path,body){const base=workerUrlEl.value.trim().replace(/\/$/,'');const key=adminKeyEl.value;if(!base)throw new Error('Worker 주소를 입력하세요.');if(!key)throw new Error('관리자 비밀번호를 입력하세요.');localStorage.setItem('happyWorkerUrl',base);sessionStorage.setItem('happyAdminKey',key);const r=await fetch(base+path,{method:'POST',headers:{'Content-Type':'application/json','x-admin-key':key},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok||!j.ok)throw new Error(j.error||`서버 오류 (${r.status})`);return j}
+async function publishImage(ref,onProgress){if(!ref||!String(ref).startsWith('idb:'))return ref;const blob=await IMG.get(ref);if(!blob)throw new Error('PC에 저장된 사진을 찾을 수 없습니다.');const path=uniqueImagePath();onProgress?.(path);await api('/upload',{path,content:await blobToBase64(blob),message:'Upload homepage image'});return path}
+async function publishAll(){collectBasics();const publishData=JSON.parse(JSON.stringify(data));const refs=[];refs.push({obj:publishData.hero,key:'image'});refs.push({obj:publishData.greeting,key:'image'});for(const type of ['special','spaces','gallery'])for(const item of publishData[type])refs.push({obj:item,key:'image'});const localRefs=refs.filter(x=>String(x.obj[x.key]||'').startsWith('idb:'));let done=0;status(`사진 업로드 준비 중 (0/${localRefs.length})`,'working');for(const x of localRefs){x.obj[x.key]=await publishImage(x.obj[x.key],()=>status(`사진 업로드 중 (${done+1}/${localRefs.length})`,'working'));done++}status('글과 활동 내용을 GitHub에 저장 중…','working');await api('/content',{content:publishData});data=publishData;CMS.set(data);status('공개 완료. 약 1~2분 후 모든 기기에 반영됩니다.','done');toast('모든 기기에 공개했습니다.');}
+document.getElementById('publishTop').onclick=async()=>{try{await publishAll()}catch(e){console.error(e);status('공개 실패: '+e.message,'error');alert(e.message)}};
+
 downloadBackup.onclick=async()=>{
  collectBasics();toast('사진까지 백업파일에 담고 있어요…');
  const backup=JSON.parse(JSON.stringify(data));
- for(const p of [['hero','image'],['program','image1'],['program','image2'],['program','image3'],['greeting','image']])backup[p[0]][p[1]]=await IMG.toDataURL(backup[p[0]][p[1]]);
+ for(const p of [['hero','image'],['greeting','image']])backup[p[0]][p[1]]=await IMG.toDataURL(backup[p[0]][p[1]]);
  for(const type of ['special','spaces','gallery'])for(const item of backup[type])item.image=await IMG.toDataURL(item.image);
  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='happy-froebel-homepage-backup-with-images.json';a.click();URL.revokeObjectURL(a.href);toast('백업파일을 만들었어요.');
 };

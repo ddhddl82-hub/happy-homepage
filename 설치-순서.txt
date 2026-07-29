@@ -1,0 +1,17 @@
+행복한프뢰벨어린이집 홈페이지 공용 연동 설치
+
+1. 이 폴더의 전체 파일을 GitHub happy-homepage 저장소에 덮어쓰고 Commit합니다.
+2. worker/worker.js 전체 내용을 Cloudflare Worker 코드에 붙여넣고 Deploy합니다.
+3. Cloudflare Worker Settings > Variables and Secrets에 아래 값이 있는지 확인합니다.
+   GITHUB_TOKEN (Secret)
+   ADMIN_KEY (Secret)
+   GITHUB_OWNER = ddhddl82-hub
+   GITHUB_REPO = happy-homepage
+   GITHUB_BRANCH = main
+   ALLOWED_ORIGIN = https://ddhddl82-hub.github.io
+4. 같은 PC에서 /happy-homepage/admin/에 접속합니다.
+5. 기존에 수정해 둔 내용과 사진이 보이면, 백업·복원 메뉴에서 ADMIN_KEY와 Worker 주소를 확인합니다.
+6. 상단의 "모든 기기에 공개"를 누릅니다.
+7. GitHub Pages 반영에는 보통 1~2분 걸립니다. 휴대폰에서 새로고침합니다.
+
+중요: 기존 PC localStorage 키를 유지했기 때문에, 같은 브라우저에서 수정했던 내용은 그대로 남아 있고 공개 버튼으로 서버에 올릴 수 있습니다.

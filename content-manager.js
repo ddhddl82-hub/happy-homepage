@@ -1,8 +1,8 @@
 (function(){
 const KEY='happyFroebelCMSv12';
+const REMOTE_URL='data/content.json';
 const defaults={
  hero:{eyebrow:'포항 북구 · 영아 중심 보육',title:'아이의 첫 시작이<br><strong>행복한 곳</strong>',subtitle:'그림책을 읽고, 만지고, 만들고, 맛보며<br>아이의 하루를 오감으로 채웁니다.',image:''},
- program:{image1:'assets/program-watermelon.jpg',image2:'assets/program-mushroom.jpg',image3:'assets/program-book.jpg'},
  greeting:{title:'아이의 작은 표현도<br><strong>소중히 듣겠습니다</strong>',lead:'아이들이 매일 웃으며 오고, 부모님이 안심하며 맡길 수 있는 어린이집을 만들고자 합니다.',body1:'영아기의 하루는 아주 작아 보이지만, 그 안에는 관계를 배우고 세상을 탐색하며 자신을 표현하는 수많은 성장이 담겨 있습니다. 행복한 어린이집은 아이마다 다른 발달 속도와 생활 리듬을 존중하고, 놀이 속에서 스스로 발견하고 시도할 수 있도록 기다려 줍니다.',body2:'교사와 가정이 아이의 하루를 함께 바라보며, 따뜻하고 안정적인 보육을 이어가겠습니다.',signature:'행복한 어린이집 원장 드림',image:''},
  philosophy:[{num:'01',title:'존중받는 아이',desc:'아이의 감정과 표현, 개별적인 생활 리듬을 세심하게 살핍니다.'},{num:'02',title:'놀이로 배우는 아이',desc:'정답을 알려주기보다 충분히 탐색하고 스스로 발견하도록 돕습니다.'},{num:'03',title:'함께 자라는 공동체',desc:'교사와 부모가 신뢰로 연결되어 아이의 성장을 함께 지원합니다.'}],
  special:[{day:'MONDAY',title:'영어 놀이',desc:'노래와 율동, 그림책과 생활 표현을 통해 영어를 즐겁게 만납니다.',image:'assets/activity.jpg'},{day:'TUESDAY',title:'오감 활동',desc:'다양한 재료의 색과 향, 질감을 탐색하며 감각 경험을 넓힙니다.',image:'assets/food-play.jpg'},{day:'FRIDAY',title:'체육 활동',desc:'신체를 자유롭게 움직이고 균형감과 자신감을 기르는 즐거운 시간입니다.',image:'assets/playground.jpg'}],
@@ -16,8 +16,17 @@ function set(v){localStorage.setItem(KEY,JSON.stringify(v));window.dispatchEvent
 function reset(){localStorage.removeItem(KEY);location.reload()}
 function path(obj,p){return p.split('.').reduce((x,k)=>x&&x[k],obj)}
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-async function image(ref){return await (window.HappyImageStore?.url(ref)??Promise.resolve(ref))}
-async function render(){const c=get();
+function isAdmin(){return /\/admin\/?(?:index\.html)?$/.test(location.pathname)}
+function publicPath(ref){if(!ref)return '';if(/^https?:|^blob:|^data:/.test(ref))return ref;if(isAdmin()&&!ref.startsWith('../'))return '../'+ref;return ref}
+async function image(ref){const value=await (window.HappyImageStore?.url(ref)??Promise.resolve(ref));return publicPath(value)}
+async function loadRemote(){
+ try{
+  const response=await fetch(`${REMOTE_URL}?v=${Date.now()}`,{cache:'no-store'});
+  if(!response.ok)throw new Error('remote content unavailable');
+  return merge(clone(defaults),await response.json());
+ }catch(e){return clone(defaults)}
+}
+async function render(input){const c=input||(!isAdmin()?await loadRemote():get());
  document.querySelectorAll('[data-bind]').forEach(el=>{const v=path(c,el.dataset.bind);if(v!==undefined)el.textContent=v});
  document.querySelectorAll('[data-bind-html]').forEach(el=>{const v=path(c,el.dataset.bindHtml);if(v!==undefined)el.innerHTML=v});
  for(const el of document.querySelectorAll('[data-image-key]')){const v=path(c,el.dataset.imageKey);if(v)el.src=await image(v)}
@@ -27,7 +36,7 @@ async function render(){const c=get();
  const gal=document.getElementById('cms-gallery-grid');if(gal){const rows=await Promise.all(c.gallery.map(async x=>{const src=await image(x.image);return `<button class="gallery-item reveal on" data-category="${esc(x.category)}" data-title="${esc(x.title)}" data-date="${esc(x.date)}" data-src="${src}"><img src="${src}" alt="${esc(x.title)}"><span><b>${esc(x.title)}</b><small>${esc(x.desc)}</small></span></button>`}));gal.innerHTML=rows.join('')}
  window.dispatchEvent(new CustomEvent('cms-rendered'));
 }
-window.HappyCMS={KEY,defaults,get,set,reset,render};
-document.readyState==='loading'?document.addEventListener('DOMContentLoaded',render):render();
-window.addEventListener('cms-content-updated',render);
+window.HappyCMS={KEY,defaults,get,set,reset,render,loadRemote,publicPath};
+if(!isAdmin()){document.readyState==='loading'?document.addEventListener('DOMContentLoaded',()=>render()):render()}
+window.addEventListener('cms-content-updated',()=>isAdmin()&&render(get()));
 })();
