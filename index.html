@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f5eee4" />
+  <meta name="description" content="포항 북구 행복한프뢰벨어린이집. 그림책을 통한 푸드오감놀이, 원어민 숲데이, 방학 없는 연중보육, 토요보육 운영." />
+  <title>행복한프뢰벨어린이집</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="홈으로">
+      <span class="brand-mark">행복한</span>
+      <span>프뢰벨어린이집</span>
+    </a>
+    <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+    <nav class="main-nav">
+      <a href="#about">우리 어린이집</a>
+      <a href="#philosophy">보육철학</a>
+      <a href="#classes">반 소개</a>
+      <a href="#program">교육과정</a>
+      <a href="#special">특별활동</a>
+      <a href="#care">운영 안내</a>
+      <a href="#spaces">공간 안내</a>
+      <a href="#gallery">활동 갤러리</a>
+      <a href="#kindergarten">유치원 연계</a>
+      <a href="#contact">입학상담</a>
+    </nav>
+    <div class="header-actions">
+      <a href="admin/index.html" class="admin-link" aria-label="관리자 페이지">관리</a>
+      <a href="tel:0542522526" class="icon-link" aria-label="전화 상담">☎</a>
+      <a href="#" class="icon-link placeholder-link" data-label="카카오톡" aria-label="카카오톡">K</a>
+      <a href="#" class="icon-link placeholder-link" data-label="인스타그램" aria-label="인스타그램">◎</a>
+      <a href="#" class="icon-link placeholder-link" data-label="블로그" aria-label="블로그">B</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img src="assets/exterior.png" alt="따뜻한 햇살 아래 행복한프뢰벨어린이집 전경" class="hero-bg" data-image-key="hero.image" />
+      <div class="hero-wash"></div>
+      <div class="hero-content reveal">
+        <p class="eyebrow" data-bind="hero.eyebrow">포항 북구 · 영아 중심 보육</p>
+        <h1 data-bind-html="hero.title">아이의 첫 시작이<br><strong>행복한 곳</strong></h1>
+        <p class="hero-sub" data-bind-html="hero.subtitle">그림책을 읽고, 만지고, 만들고, 맛보며<br>아이의 하루를 오감으로 채웁니다.</p>
+        <div class="hero-cta">
+          <a href="tel:0542522526" class="btn primary">입학상담 054-252-2526</a>
+          <a href="#classes" class="btn ghost">우리 반 둘러보기</a>
+        </div>
+      </div>
+      <div class="hero-badges" aria-label="주요 장점">
+        <span>📖 그림책 푸드오감</span>
+        <span>👶 0세 1:2 시범교육</span>
+        <span>🚌 북구지역 차량운행</span>
+        <span>☀ 방학 없는 연중보육</span>
+        <span class="accent">🧸 토요보육 09:00~15:00</span>
+      </div>
+    </section>
+
+    <section id="about" class="section intro-section">
+      <div class="section-title reveal">
+        <span>HAPPY FROEBEL</span>
+        <h2>아이의 오늘을 세심하게,<br>가족의 일상을 든든하게</h2>
+      </div>
+      <div class="intro-grid">
+        <article class="feature-card reveal"><b>📖</b><h3>그림책을 통한 푸드오감놀이</h3><p>이야기 속 재료를 직접 탐색하고 만들고 맛보며 배움을 놀이로 확장합니다.</p></article>
+        <article class="feature-card reveal"><b>🌳</b><h3>원어민 숲데이</h3><p>자연 속에서 원어민과 함께 움직이고 표현하며 영어를 친근하게 경험합니다.</p></article>
+        <article class="feature-card reveal"><b>🍎</b><h3>과일이 포함된 4찬 식단</h3><p>세 가지 반찬과 신선한 과일 한 가지로 구성된 균형 잡힌 점심을 제공합니다.</p></article>
+        <article class="feature-card reveal"><b>🏡</b><h3>방학 없는 어린이집</h3><p>여름과 겨울에도 흔들림 없이, 연중 안정적인 보육으로 가정의 일상을 지킵니다.</p></article>
+      </div>
+    </section>
+
+    <section id="philosophy" class="section philosophy-section">
+      <div class="principal-photo reveal">
+        <img src="assets/book-room.jpg" alt="그림책과 놀이가 어우러진 행복한 어린이집 공간" data-image-key="greeting.image">
+        <div class="principal-badge">원장 인사</div>
+      </div>
+      <div class="principal-copy reveal">
+        <p class="eyebrow">WELCOME TO HAPPY FROEBEL</p>
+        <h2 data-bind-html="greeting.title">아이의 작은 표현도<br><strong>소중히 듣겠습니다</strong></h2>
+        <p class="lead" data-bind="greeting.lead">아이들이 매일 웃으며 오고, 부모님이 안심하며 맡길 수 있는 어린이집을 만들고자 합니다.</p>
+        <p data-bind="greeting.body1">영아기의 하루는 아주 작아 보이지만, 그 안에는 관계를 배우고 세상을 탐색하며 자신을 표현하는 수많은 성장이 담겨 있습니다. 행복한 어린이집은 아이마다 다른 발달 속도와 생활 리듬을 존중하고, 놀이 속에서 스스로 발견하고 시도할 수 있도록 기다려 줍니다.</p>
+        <p data-bind="greeting.body2">교사와 가정이 아이의 하루를 함께 바라보며, 따뜻하고 안정적인 보육을 이어가겠습니다.</p>
+        <div class="signature" data-bind="greeting.signature">행복한 어린이집 원장 드림</div>
+      </div>
+      <div class="philosophy-grid" id="cms-philosophy-grid">
+        <article class="philosophy-card reveal"><span>01</span><h3>존중받는 아이</h3><p>아이의 감정과 표현, 개별적인 생활 리듬을 세심하게 살핍니다.</p></article>
+        <article class="philosophy-card reveal"><span>02</span><h3>놀이로 배우는 아이</h3><p>정답을 알려주기보다 충분히 탐색하고 스스로 발견하도록 돕습니다.</p></article>
+        <article class="philosophy-card reveal"><span>03</span><h3>함께 자라는 공동체</h3><p>교사와 부모가 신뢰로 연결되어 아이의 성장을 함께 지원합니다.</p></article>
+      </div>
+    </section>
+
+    <section class="section photo-story">
+      <div class="photo-mosaic reveal">
+        <img src="assets/food-play.jpg" alt="아이들이 참여하는 오감놀이 활동" class="photo-large" />
+        <img src="assets/book-room.jpg" alt="그림책을 함께 읽는 모습" />
+        <img src="assets/forest-day.jpg" alt="숲에서 자연을 탐색하는 아이들" />
+      </div>
+      <div class="story-copy reveal">
+        <p class="eyebrow">사진으로 만나는 행복한 하루</p>
+        <h2>읽는 데서 끝나지 않는<br><em>살아 있는 그림책 교육</em></h2>
+        <p>한 권의 그림책이 식재료 탐색과 요리, 자연, 미술, 언어놀이로 이어집니다. 아이는 이야기의 주인공이 되어 몸과 마음으로 경험합니다.</p>
+        <a href="#program" class="text-link">대표 프로그램 자세히 보기 →</a>
+      </div>
+    </section>
+
+    <section id="classes" class="section classes-section">
+      <div class="section-title centered reveal">
+        <span>OUR CLASSES</span>
+        <h2>우리 반을 소개합니다</h2>
+        <p>연령별 발달과 생활 리듬을 존중하는 세심한 보육</p>
+      </div>
+      <div class="class-grid">
+        <article class="class-card pororo reveal"><div class="age">0세</div><h3>뽀로로반</h3><strong>교사 대 아동 1:2 시범교육</strong><p>한 명의 교사가 두 명의 영아를 세심하게 살피며 안정적인 애착과 개별 생활 리듬을 지원합니다.</p></article>
+        <article class="class-card poli reveal"><div class="age">1세</div><h3>폴리반</h3><strong>교사 대 아동 1:5</strong><p>걷고 탐색하는 즐거움이 커지는 시기에 안전하고 풍부한 놀이 경험을 제공합니다.</p></article>
+        <article class="class-card mini reveal"><div class="age">2세</div><h3>미니반</h3><strong>교사 대 아동 1:7</strong><p>말과 놀이가 빠르게 확장되는 시기에 표현하고 스스로 시도하는 힘을 키웁니다.</p></article>
+        <article class="class-card thomas reveal"><div class="age">3세</div><h3>토마스반</h3><strong>소수 정원 운영</strong><p>한 명 한 명의 관심과 발달을 세심히 살피며 그림책과 놀이를 깊이 있게 연결합니다.</p></article>
+      </div>
+    </section>
+
+    <section id="program" class="section program-section">
+      <div class="program-copy reveal">
+        <p class="eyebrow">SIGNATURE PROGRAM</p>
+        <h2>그림책을 통한<br><strong>푸드오감놀이</strong></h2>
+        <p>그림책 속 이야기가 아이의 손끝과 입맛, 상상력을 만나 하나의 경험이 됩니다.</p>
+        <ol class="steps">
+          <li><span>01</span><b>읽고</b><small>그림책과 만나기</small></li>
+          <li><span>02</span><b>만지고</b><small>식재료 탐색하기</small></li>
+          <li><span>03</span><b>만들고</b><small>요리와 미술로 표현하기</small></li>
+          <li><span>04</span><b>맛보고</b><small>함께 나누기</small></li>
+        </ol>
+      </div>
+      <div class="program-gallery reveal">
+        <img src="assets/activity.jpg" alt="아이들의 식재료 탐색 활동" />
+        <img src="assets/food-play.jpg" alt="그림책 연계 오감놀이" />
+        <img src="assets/garden.jpg" alt="자연 속에서 이루어지는 오감 탐색" />
+      </div>
+    </section>
+
+    <section class="section forest-section">
+      <img src="assets/forest-day.jpg" alt="원어민 숲데이 활동" />
+      <div class="forest-panel reveal">
+        <p class="eyebrow">NATIVE FOREST DAY</p>
+        <h2>자연 속에서 영어를<br>즐기는 <strong>원어민 숲데이</strong></h2>
+        <p>교실에서 외우는 영어가 아니라, 숲길을 걷고 자연물을 관찰하며 생활 속 표현을 자연스럽게 만납니다.</p>
+      </div>
+    </section>
+
+    <section id="special" class="section special-section">
+      <div class="section-title centered reveal">
+        <span>SPECIAL ACTIVITIES</span>
+        <h2>놀이의 폭을 넓혀 주는 특별활동</h2>
+        <p>연령과 발달에 맞추어 몸과 언어, 감각을 고르게 경험합니다.</p>
+      </div>
+      <div class="special-grid" id="cms-special-grid">
+        <article class="special-card reveal">
+          <img src="assets/activity.jpg" alt="아이들이 함께 참여하는 영어 특별활동">
+          <div><span>MONDAY</span><h3>영어 놀이</h3><p>노래와 율동, 그림책과 생활 표현을 통해 영어를 즐겁게 만납니다.</p></div>
+        </article>
+        <article class="special-card reveal">
+          <img src="assets/food-play.jpg" alt="다양한 재료를 탐색하는 오감 특별활동">
+          <div><span>TUESDAY</span><h3>오감 활동</h3><p>다양한 재료의 색과 향, 질감을 탐색하며 감각 경험을 넓힙니다.</p></div>
+        </article>
+        <article class="special-card reveal">
+          <img src="assets/playground.jpg" alt="넓은 공간에서 신체를 움직이는 체육 특별활동">
+          <div><span>FRIDAY</span><h3>체육 활동</h3><p>신체를 자유롭게 움직이고 균형감과 자신감을 기르는 즐거운 시간입니다.</p></div>
+        </article>
+      </div>
+      <p class="special-note reveal">※ 특별활동 일정은 어린이집 행사와 계절 프로그램에 따라 조정될 수 있습니다.</p>
+    </section>
+
+    <section id="care" class="section care-section">
+      <div class="section-title centered reveal">
+        <span>CARE INFORMATION</span>
+        <h2>가족의 생활까지 생각하는 운영</h2>
+      </div>
+      <div class="care-grid">
+        <article class="care-card reveal"><span>⏰</span><h3>평일 운영</h3><strong>07:30 ~ 19:30</strong><p>아침부터 저녁까지 안정적인 보육</p></article>
+        <article class="care-card featured reveal"><span>🧸</span><div class="ribbon">전면 운영</div><h3>토요보육</h3><strong>09:00 ~ 15:00</strong><p>토요일에도 따뜻하고 안전한 하루</p></article>
+        <article class="care-card reveal"><span>☀</span><h3>방학 없는 어린이집</h3><strong>연중 안정적 보육</strong><p>여름·겨울방학 없이 운영</p></article>
+        <article class="care-card reveal"><span>🚌</span><h3>차량운행</h3><strong>포항 북구 지역</strong><p>운행 가능 지역은 상담 시 안내</p></article>
+      </div>
+    </section>
+
+    <section id="spaces" class="section spaces-detail-section">
+      <div class="section-title centered reveal">
+        <span>SPACE & ENVIRONMENT</span>
+        <h2>아이의 하루를 담는 행복한 공간</h2>
+        <p>사진마다 공간의 쓰임과 아이들이 경험하는 하루를 구체적으로 담았습니다.</p>
+      </div>
+      <div class="spaces-grid" id="cms-spaces-grid">
+        <article class="space-detail-card wide reveal">
+          <img src="assets/classroom.jpg" alt="햇살이 잘 들어오고 영역별 놀잇감이 정돈된 보육실">
+          <div class="space-caption"><span>01</span><h3>연령별 보육실</h3><p>아이들이 편안하게 머물 수 있도록 연령별 발달에 맞는 놀잇감과 휴식 공간을 구성합니다. 낮에 했던 놀이가 연장보육까지 자연스럽게 이어질 수 있도록 환경을 유연하게 바꿉니다.</p></div>
+        </article>
+        <article class="space-detail-card reveal">
+          <img src="assets/book-room.jpg" alt="낮은 책장과 편안한 독서 자리가 마련된 해피북마루">
+          <div class="space-caption"><span>02</span><h3>해피북마루</h3><p>아이가 스스로 책을 고르고 편안히 머물 수 있는 그림책 공간입니다. 함께 읽기와 소그룹 이야기 나누기가 이루어집니다.</p></div>
+        </article>
+        <article class="space-detail-card reveal">
+          <img src="assets/playground.jpg" alt="아이들이 마음껏 뛰고 신체놀이를 할 수 있는 전용 놀이공간">
+          <div class="space-caption"><span>03</span><h3>전용 놀이공간</h3><p>날씨와 계절을 느끼며 걷고 뛰고 움직이는 공간입니다. 대근육 활동과 자연스러운 친구 관계가 자랍니다.</p></div>
+        </article>
+        <article class="space-detail-card reveal">
+          <img src="assets/garden.jpg" alt="식물과 자연물을 가까이에서 관찰하는 작은 자연 탐색 공간">
+          <div class="space-caption"><span>04</span><h3>자연 탐색 공간</h3><p>식물과 흙, 계절의 변화를 가까이에서 관찰하며 일상 속 자연 경험을 쌓습니다.</p></div>
+        </article>
+        <article class="space-detail-card reveal">
+          <img src="assets/food-play.jpg" alt="푸드오감놀이와 다양한 감각 활동이 진행되는 활동 공간">
+          <div class="space-caption"><span>05</span><h3>오감활동 공간</h3><p>식재료와 다양한 감각 재료를 안전하게 탐색하고, 만들기와 표현 활동으로 이어가는 공간입니다.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery" class="section gallery-section">
+      <div class="section-title centered reveal">
+        <span>HAPPY GALLERY</span>
+        <h2>행사와 활동사진 갤러리</h2>
+        <p>아이들의 특별한 행사와 매일의 놀이를 사진으로 만나보세요.</p>
+      </div>
+      <div class="gallery-toolbar reveal" role="group" aria-label="갤러리 분류">
+        <button class="filter-btn active" data-filter="all">전체</button>
+        <button class="filter-btn" data-filter="food">푸드오감</button>
+        <button class="filter-btn" data-filter="forest">숲·자연</button>
+        <button class="filter-btn" data-filter="event">행사</button>
+        <button class="filter-btn" data-filter="daily">일상놀이</button>
+      </div>
+      <div class="gallery-grid" id="cms-gallery-grid">
+        <button class="gallery-item reveal" data-category="food" data-title="그림책 푸드오감놀이" data-date="2026.07" data-src="assets/gallery/event-1.jpg"><img src="assets/gallery/event-1.jpg" alt="그림책 푸드오감놀이 활동"><span><b>그림책 푸드오감놀이</b><small>재료를 만지고 맛보는 즐거운 시간</small></span></button>
+        <button class="gallery-item reveal" data-category="event" data-title="행복한 계절행사" data-date="2026.07" data-src="assets/gallery/event-2.jpg"><img src="assets/gallery/event-2.jpg" alt="어린이집 계절행사"><span><b>행복한 계절행사</b><small>함께 웃고 추억을 남겼어요</small></span></button>
+        <button class="gallery-item reveal" data-category="daily" data-title="친구와 함께하는 놀이" data-date="2026.07" data-src="assets/gallery/event-3.jpg"><img src="assets/gallery/event-3.jpg" alt="친구와 함께하는 놀이"><span><b>친구와 함께하는 놀이</b><small>놀이 속에서 관계가 자라요</small></span></button>
+        <button class="gallery-item reveal" data-category="forest" data-title="자연 탐색 활동" data-date="2026.06" data-src="assets/gallery/event-4.jpg"><img src="assets/gallery/event-4.jpg" alt="자연 탐색 활동"><span><b>자연 탐색 활동</b><small>계절을 온몸으로 느껴요</small></span></button>
+        <button class="gallery-item reveal" data-category="event" data-title="특별한 날의 기록" data-date="2026.04" data-src="assets/gallery/event-5.jpg"><img src="assets/gallery/event-5.jpg" alt="어린이집 특별행사"><span><b>특별한 날의 기록</b><small>아이들의 반짝이는 순간</small></span></button>
+        <button class="gallery-item reveal" data-category="daily" data-title="교실 속 자유놀이" data-date="2026.04" data-src="assets/gallery/event-6.jpg"><img src="assets/gallery/event-6.jpg" alt="교실 자유놀이"><span><b>교실 속 자유놀이</b><small>스스로 선택하고 탐색해요</small></span></button>
+        <button class="gallery-item reveal" data-category="food" data-title="오감으로 만나는 식재료" data-date="2025.02" data-src="assets/gallery/event-7.jpg"><img src="assets/gallery/event-7.jpg" alt="식재료 오감놀이"><span><b>오감으로 만나는 식재료</b><small>보고, 만지고, 향을 맡아요</small></span></button>
+        <button class="gallery-item reveal" data-category="forest" data-title="바깥놀이 이야기" data-date="2025.02" data-src="assets/gallery/event-8.jpg"><img src="assets/gallery/event-8.jpg" alt="바깥놀이 활동"><span><b>바깥놀이 이야기</b><small>넓은 공간에서 마음껏 움직여요</small></span></button>
+      </div>
+      <div class="gallery-note reveal"><b>활동사진을 직접 관리할 수 있습니다</b><p>관리자 페이지에서 사진, 활동명, 날짜, 분류, 설명을 추가하거나 순서를 바꿔 보세요.</p><a class="text-link" href="admin/index.html">관리자 페이지 열기 →</a></div>
+    </section>
+
+    <section id="kindergarten" class="section kindergarten-section">
+      <div class="kindergarten-visual reveal"><img src="assets/playground.jpg" alt="행복한유치원 연계 활동을 상징하는 야외 공간"><span>유보이음</span></div>
+      <div class="kindergarten-copy reveal">
+        <p class="eyebrow">HAPPY KINDERGARTEN CONNECTION</p>
+        <h2>어린이집에서 유치원까지<br><strong>익숙하고 따뜻하게 이어집니다</strong></h2>
+        <p>행복한유치원과의 연계활동을 통해 형님반 생활과 새로운 교육환경을 자연스럽게 경험합니다. 어린이집 졸업 이후의 성장까지 함께 바라봅니다.</p>
+        <ul><li>월 1회 유보이음 연계활동</li><li>유치원 공간과 선생님을 미리 만나는 경험</li><li>놀이와 오감활동으로 이어지는 자연스러운 전이</li></ul>
+        <a href="kindergarten/index.html" class="btn primary">행복한유치원 홈페이지 보기</a>
+      </div>
+    </section>
+
+    <section class="section social-section">
+      <div class="section-title centered reveal">
+        <span>OUR DAILY STORY</span>
+        <h2>오늘도 행복한 하루를 기록합니다</h2>
+        <p>아이들의 놀이와 성장 이야기를 SNS에서 더 가까이 만나보세요.</p>
+      </div>
+      <div class="social-grid">
+        <a href="#" class="social-card instagram placeholder-link" data-label="인스타그램">
+          <div class="social-icon">◎</div><div><h3>Instagram</h3><p>아이들의 일상을 가장 빠르게 만나는 공간</p><span>인스타그램 바로가기 →</span></div>
+        </a>
+        <a href="#" class="social-card blog placeholder-link" data-label="블로그">
+          <div class="social-icon">B</div><div><h3>Blog</h3><p>놀이기록과 교육 이야기를 자세히 담은 공간</p><span>블로그 바로가기 →</span></div>
+        </a>
+      </div>
+      <div class="social-preview reveal">
+        <img src="assets/food-play.jpg" alt="오감놀이 기록" />
+        <img src="assets/forest-day.jpg" alt="숲데이 기록" />
+        <img src="assets/activity.jpg" alt="놀이 활동 기록" />
+        <img src="assets/book-room.jpg" alt="그림책 활동 기록" />
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="contact-copy reveal">
+        <p>우리 아이의 첫 시작</p>
+        <h2>행복한프뢰벨에서<br>함께하세요.</h2>
+      </div>
+      <div class="contact-info reveal">
+        <a href="tel:0542522526"><span>전화상담</span><strong>054-252-2526</strong></a>
+        <div><span>주소</span><strong>포항시 북구 장량로18번길 68</strong></div>
+        <div><span>운영시간</span><strong>평일 07:30~19:30 · 토요일 09:00~15:00</strong></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>행복한프뢰벨어린이집</strong><p>아이의 하루가 그림책처럼 따뜻하게 펼쳐지는 곳</p></div>
+    <div class="footer-links"><a href="kindergarten/index.html">행복한유치원</a><a href="tel:0542522526">전화</a><a href="#" class="placeholder-link" data-label="카카오톡">카카오톡</a><a href="#" class="placeholder-link" data-label="인스타그램">인스타그램</a><a href="#" class="placeholder-link" data-label="블로그">블로그</a></div>
+    <small>© 행복한프뢰벨어린이집. All rights reserved.</small>
+  </footer>
+  <div class="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="닫기">×</button><button class="lightbox-prev" aria-label="이전 사진">‹</button><figure><img src="" alt=""><figcaption><b></b><span></span></figcaption></figure><button class="lightbox-next" aria-label="다음 사진">›</button></div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="content-manager.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
