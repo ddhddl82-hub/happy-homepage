@@ -63,6 +63,14 @@
  .space img{height:290px}.space-copy{padding:0 4px}.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.gallery figure:nth-child(1),.gallery figure:nth-child(6){grid-column:span 2;grid-row:span 1}
  .kindergarten{padding:22px;border-radius:26px}.kindergarten img{height:280px}.contact-card{padding:30px}.quick{left:14px;right:14px}.quick a{flex:1;text-align:center}.quick .hide-mobile{display:none}
 }
+
+.gallery-item{border:0;padding:0;margin:0;position:relative;overflow:hidden;border-radius:20px;cursor:pointer;background:#ddd;text-align:left}
+.gallery-item img{height:100%;transition:.45s}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-item>span{position:absolute;inset:auto 0 0;padding:40px 18px 16px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.68));display:grid}
+.gallery-item small{opacity:.85}
+.gallery-item.hide{display:none}
+
 </style>
 </head>
 <body>
@@ -79,11 +87,11 @@
 
 <main id="top">
 <section class="hero">
- <img src="assets/exterior.png" alt="행복한프뢰벨어린이집 전경" class="hero-bg">
+ <img src="assets/exterior.png" alt="행복한프뢰벨어린이집 전경" class="hero-bg" data-image-key="hero.image">
  <div class="hero-content reveal">
-  <p class="eyebrow">포항 북구 · 영아 중심 보육</p>
-  <h1>아이의 첫 시작이<br><strong>행복한 곳</strong></h1>
-  <p class="hero-sub">그림책을 읽고, 만지고, 만들고, 맛보며 아이의 하루를 오감으로 채웁니다.</p>
+  <p class="eyebrow" data-bind="hero.eyebrow">포항 북구 · 영아 중심 보육</p>
+  <h1 data-bind-html="hero.title">아이의 첫 시작이<br><strong>행복한 곳</strong></h1>
+  <p class="hero-sub" data-bind-html="hero.subtitle">그림책을 읽고, 만지고, 만들고, 맛보며 아이의 하루를 오감으로 채웁니다.</p>
   <div class="btns"><a class="btn primary" href="tel:0542522526">입학상담 054-252-2526</a><a class="btn ghost" href="#about">어린이집 둘러보기</a></div>
  </div>
  <div class="hero-badges"><span>📖 그림책 푸드오감</span><span>🌳 원어민 숲데이</span><span>🚌 북구지역 차량운행</span><span>☀ 방학 없는 연중보육</span><span class="accent">🧸 토요보육 09:00~15:00</span></div>
@@ -100,15 +108,15 @@
 </section>
 
 <section id="philosophy" class="section greeting">
- <div class="greeting-photo reveal"><img src="assets/book-room.jpg" alt="그림책 공간"><div class="stamp">원장<br>인사</div></div>
+ <div class="greeting-photo reveal"><img src="assets/book-room.jpg" alt="그림책 공간" data-image-key="greeting.image"><div class="stamp">원장<br>인사</div></div>
  <div class="greeting-copy reveal">
-  <p class="eyebrow">WELCOME TO HAPPY FROEBEL</p><h2>아이의 작은 표현도<br><strong>소중히 듣겠습니다</strong></h2>
-  <p class="lead">아이들이 매일 웃으며 오고, 부모님이 안심하며 맡길 수 있는 어린이집을 만들고자 합니다.</p>
-  <p>영아기의 하루는 아주 작아 보이지만, 그 안에는 관계를 배우고 세상을 탐색하며 자신을 표현하는 수많은 성장이 담겨 있습니다. 행복한 어린이집은 아이마다 다른 발달 속도와 생활 리듬을 존중하고, 놀이 속에서 스스로 발견하고 시도할 수 있도록 기다려 줍니다.</p>
-  <p>교사와 가정이 아이의 하루를 함께 바라보며, 따뜻하고 안정적인 보육을 이어가겠습니다.</p>
-  <div class="signature">행복한 어린이집 원장 드림</div>
+  <p class="eyebrow">WELCOME TO HAPPY FROEBEL</p><h2 data-bind-html="greeting.title">아이의 작은 표현도<br><strong>소중히 듣겠습니다</strong></h2>
+  <p class="lead" data-bind="greeting.lead">아이들이 매일 웃으며 오고, 부모님이 안심하며 맡길 수 있는 어린이집을 만들고자 합니다.</p>
+  <p data-bind="greeting.body1">영아기의 하루는 아주 작아 보이지만, 그 안에는 관계를 배우고 세상을 탐색하며 자신을 표현하는 수많은 성장이 담겨 있습니다. 행복한 어린이집은 아이마다 다른 발달 속도와 생활 리듬을 존중하고, 놀이 속에서 스스로 발견하고 시도할 수 있도록 기다려 줍니다.</p>
+  <p data-bind="greeting.body2">교사와 가정이 아이의 하루를 함께 바라보며, 따뜻하고 안정적인 보육을 이어가겠습니다.</p>
+  <div class="signature" data-bind="greeting.signature">행복한 어린이집 원장 드림</div>
  </div>
- <div class="philosophy-grid" style="grid-column:1/-1">
+ <div class="philosophy-grid" id="cms-philosophy-grid" style="grid-column:1/-1">
   <article class="philosophy reveal"><span>01</span><h3>존중받는 아이</h3><p>아이의 감정과 표현, 개별적인 생활 리듬을 세심하게 살핍니다.</p></article>
   <article class="philosophy reveal"><span>02</span><h3>놀이로 배우는 아이</h3><p>정답을 알려주기보다 충분히 탐색하고 스스로 발견하도록 돕습니다.</p></article>
   <article class="philosophy reveal"><span>03</span><h3>함께 자라는 공동체</h3><p>교사와 부모가 신뢰로 연결되어 아이의 성장을 함께 지원합니다.</p></article>
@@ -145,7 +153,7 @@
 
 <section id="special" class="section">
  <div class="section-head center reveal"><p class="eyebrow">SPECIAL ACTIVITIES</p><h2>놀이의 폭을 넓혀 주는 특별활동</h2><p>연령과 발달에 맞추어 몸과 언어, 감각을 고르게 경험합니다.</p></div>
- <div class="special-grid">
+ <div class="special-grid" id="cms-special-grid">
   <article class="special-card reveal"><img src="assets/activity.jpg" alt="영어 놀이"><div><span>MONDAY</span><h3>영어 놀이</h3><p>노래와 율동, 그림책과 생활 표현을 통해 영어를 즐겁게 만납니다.</p></div></article>
   <article class="special-card reveal"><img src="assets/food-play.jpg" alt="오감 활동"><div><span>TUESDAY</span><h3>오감 활동</h3><p>다양한 재료의 색과 향, 질감을 탐색하며 감각 경험을 넓힙니다.</p></div></article>
   <article class="special-card reveal"><img src="assets/playground.jpg" alt="체육 활동"><div><span>FRIDAY</span><h3>체육 활동</h3><p>신체를 자유롭게 움직이고 균형감과 자신감을 기르는 즐거운 시간입니다.</p></div></article>
@@ -190,12 +198,8 @@
 
 <section id="spaces" class="section">
  <div class="section-head center reveal"><p class="eyebrow">OUR SPACES</p><h2>아이의 하루가 편안한 공간</h2><p>사진 한 장에 머무르지 않고, 각 공간의 역할과 아이들의 생활이 보이도록 소개합니다.</p></div>
- <div class="space-list">
-  <article class="space reveal"><img src="assets/classroom.jpg" onerror="this.src='assets/activity.jpg'" alt="연령별 보육실"><div class="space-copy"><span>01 · CLASSROOM</span><h3>연령별 보육실</h3><p>각 연령의 움직임과 발달 특성을 고려해 놀이 영역을 구성합니다. 익숙한 생활 흐름 안에서 아이가 편안하게 탐색하고 쉬도록 돕습니다.</p></div></article>
-  <article class="space reveal"><img src="assets/book-room.jpg" alt="해피북마루"><div class="space-copy"><span>02 · HAPPY BOOK MARU</span><h3>해피북마루</h3><p>그림책을 고르고, 함께 읽고, 이야기를 놀이로 이어 가는 책 공간입니다. 매일 책과 자연스럽게 만나는 습관을 키웁니다.</p></div></article>
-  <article class="space reveal"><img src="assets/playground.jpg" alt="전용 놀이공간"><div class="space-copy"><span>03 · PLAYGROUND</span><h3>전용 놀이공간</h3><p>아이들이 몸을 충분히 움직이며 달리고, 오르고, 균형을 잡는 즐거움을 경험합니다.</p></div></article>
-  <article class="space reveal"><img src="assets/garden.jpg" alt="자연 탐색 공간"><div class="space-copy"><span>04 · NATURE</span><h3>자연 탐색 공간</h3><p>계절의 변화와 식물, 흙, 바람을 가까이에서 만나며 작은 발견을 차곡차곡 쌓습니다.</p></div></article>
-  <article class="space reveal"><img src="assets/food-play.jpg" alt="오감활동 공간"><div class="space-copy"><span>05 · SENSORY PLAY</span><h3>오감활동 공간</h3><p>다양한 재료를 펼치고 만지고 섞으며, 아이가 마음껏 표현할 수 있도록 넉넉하게 구성한 활동 공간입니다.</p></div></article>
+ <div class="space-list" id="cms-spaces-grid">
+  <article class="space reveal"><img src="assets/classroom.jpg" alt="연령별 보육실"><div class="space-copy"><span>01 · CLASSROOM</span><h3>연령별 보육실</h3><p>연령별 발달에 맞춘 편안한 보육 공간입니다.</p></div></article>
  </div>
 </section>
 
@@ -203,14 +207,7 @@
 <section id="gallery" class="section">
  <div class="section-head center reveal"><p class="eyebrow">HAPPY MOMENTS</p><h2>활동 갤러리</h2><p>행복한프뢰벨어린이집의 살아 있는 하루를 만나보세요.</p></div>
  <div class="gallery-filter"><button class="filter-btn active" data-filter="all">전체</button><button class="filter-btn" data-filter="book">그림책</button><button class="filter-btn" data-filter="sensory">오감놀이</button><button class="filter-btn" data-filter="nature">자연·숲</button><button class="filter-btn" data-filter="daily">일상</button></div>
- <div class="gallery">
-  <figure data-cat="sensory"><img src="assets/food-play.jpg" alt="푸드오감놀이"><figcaption>그림책 푸드오감놀이</figcaption></figure>
-  <figure data-cat="book"><img src="assets/book-room.jpg" alt="그림책 읽기"><figcaption>그림책과 만나는 시간</figcaption></figure>
-  <figure data-cat="nature"><img src="assets/forest-day.jpg" alt="숲 활동"><figcaption>원어민 숲데이</figcaption></figure>
-  <figure data-cat="daily"><img src="assets/activity.jpg" alt="교실 활동"><figcaption>함께하는 교실 놀이</figcaption></figure>
-  <figure data-cat="nature"><img src="assets/garden.jpg" alt="자연 탐색"><figcaption>계절 자연 탐색</figcaption></figure>
-  <figure data-cat="daily"><img src="assets/playground.jpg" alt="신체 놀이"><figcaption>마음껏 움직이는 시간</figcaption></figure>
- </div>
+ <div class="gallery" id="cms-gallery-grid"></div>
 </section>
 </div>
 
@@ -228,6 +225,7 @@
 <div class="quick"><a class="hide-mobile" href="admin/index.html">관리자</a><a href="tel:0542522526">☎ 입학상담</a></div>
 <div class="lightbox"><button aria-label="닫기">×</button><img src="" alt="확대 이미지"></div>
 
+<script src="content-manager.js"></script>
 <script>
 const header=document.querySelector('.site-header'),menu=document.querySelector('.menu-btn'),nav=document.querySelector('.nav');
 addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>20));
@@ -235,10 +233,30 @@ menu.addEventListener('click',()=>nav.classList.toggle('open'));
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const buttons=document.querySelectorAll('.filter-btn'),figures=document.querySelectorAll('.gallery figure');
-buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;figures.forEach(x=>x.classList.toggle('hide',f!=='all'&&x.dataset.cat!==f))}));
 const lb=document.querySelector('.lightbox'),lbimg=lb.querySelector('img');
-figures.forEach(f=>f.addEventListener('click',()=>{lbimg.src=f.querySelector('img').src;lb.classList.add('open')}));
+function bindGallery(){
+ const buttons=document.querySelectorAll('.filter-btn');
+ const items=document.querySelectorAll('#cms-gallery-grid .gallery-item');
+ buttons.forEach(btn=>{
+  btn.onclick=()=>{
+   buttons.forEach(b=>b.classList.remove('active'));
+   btn.classList.add('active');
+   const f=btn.dataset.filter;
+   const categoryMap={book:'daily',sensory:'food',nature:'forest',daily:'daily'};
+   const wanted=categoryMap[f]||f;
+   items.forEach(x=>x.classList.toggle('hide',f!=='all'&&x.dataset.category!==wanted));
+  };
+ });
+ items.forEach(item=>{
+  item.onclick=()=>{
+   lbimg.src=item.dataset.src||item.querySelector('img').src;
+   lbimg.alt=item.dataset.title||'활동사진';
+   lb.classList.add('open');
+  };
+ });
+}
+bindGallery();
+window.addEventListener('cms-rendered',bindGallery);
 lb.addEventListener('click',e=>{if(e.target===lb||e.target.tagName==='BUTTON')lb.classList.remove('open')});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
 </script>

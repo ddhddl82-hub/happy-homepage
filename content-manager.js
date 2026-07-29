@@ -38,10 +38,10 @@ function render(){const c=get();
  document.querySelectorAll('[data-bind]').forEach(el=>{const v=path(c,el.dataset.bind);if(v!==undefined)el.textContent=v});
  document.querySelectorAll('[data-bind-html]').forEach(el=>{const v=path(c,el.dataset.bindHtml);if(v!==undefined)el.innerHTML=v});
  document.querySelectorAll('[data-image-key]').forEach(el=>{const v=path(c,el.dataset.imageKey);if(v)el.src=v});
- const ph=document.getElementById('cms-philosophy-grid');if(ph)ph.innerHTML=c.philosophy.map(x=>`<article class="philosophy-card reveal visible"><span>${esc(x.num)}</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></article>`).join('');
- const sp=document.getElementById('cms-special-grid');if(sp)sp.innerHTML=c.special.map(x=>`<article class="special-card reveal visible"><img src="${x.image}" alt="${esc(x.title)}"><div><span>${esc(x.day)}</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></div></article>`).join('');
- const spaces=document.getElementById('cms-spaces-grid');if(spaces)spaces.innerHTML=c.spaces.map(x=>`<article class="space-detail-card ${x.wide?'wide':''} reveal visible"><img src="${x.image}" alt="${esc(x.title)}"><div class="space-caption"><span>${esc(x.num)}</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></div></article>`).join('');
- const gal=document.getElementById('cms-gallery-grid');if(gal)gal.innerHTML=c.gallery.map((x,i)=>`<button class="gallery-item reveal visible" data-category="${esc(x.category)}" data-title="${esc(x.title)}" data-date="${esc(x.date)}" data-src="${x.image}"><img src="${x.image}" alt="${esc(x.title)}"><span><b>${esc(x.title)}</b><small>${esc(x.desc)}</small></span></button>`).join('');
+ const ph=document.getElementById('cms-philosophy-grid');if(ph)ph.innerHTML=c.philosophy.map(x=>`<article class="philosophy reveal on"><span>${esc(x.num)}</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></article>`).join('');
+ const sp=document.getElementById('cms-special-grid');if(sp)sp.innerHTML=c.special.map(x=>`<article class="special-card reveal on"><img src="${x.image}" alt="${esc(x.title)}"><div><span>${esc(x.day)}</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></div></article>`).join('');
+ const spaces=document.getElementById('cms-spaces-grid');if(spaces)spaces.innerHTML=c.spaces.map(x=>`<article class="space reveal on"><img src="${x.image}" alt="${esc(x.title)}"><div class="space-copy"><span>${esc(x.num)} · SPACE</span><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p></div></article>`).join('');
+ const gal=document.getElementById('cms-gallery-grid');if(gal)gal.innerHTML=c.gallery.map((x,i)=>`<button class="gallery-item reveal on" data-category="${esc(x.category)}" data-title="${esc(x.title)}" data-date="${esc(x.date)}" data-src="${x.image}"><img src="${x.image}" alt="${esc(x.title)}"><span><b>${esc(x.title)}</b><small>${esc(x.desc)}</small></span></button>`).join('');
  window.dispatchEvent(new CustomEvent('cms-rendered'));
 }
 window.HappyCMS={KEY,defaults,get,set,reset,render};
