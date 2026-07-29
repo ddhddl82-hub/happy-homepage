@@ -13,6 +13,11 @@
     "signature": "행복한 어린이집 원장 드림",
     "image": ""
   },
+  "program": {
+    "image1": "assets/activity.jpg",
+    "image2": "assets/food-play.jpg",
+    "image3": "assets/garden.jpg"
+  },
   "philosophy": [
     {
       "num": "01",

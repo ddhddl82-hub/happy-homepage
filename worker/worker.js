@@ -11,7 +11,15 @@ export default {
     }
 
     if (url.pathname === '/health' && request.method === 'GET') {
-      return json({ ok: true, service: 'happy-homepage-upload' }, 200, cors);
+      return json({
+        ok: true,
+        service: 'happy-homepage-upload',
+        configured: requiredEnvironmentReady(env)
+      }, 200, cors);
+    }
+
+    if (!requiredEnvironmentReady(env)) {
+      return json({ ok: false, error: 'Worker 환경 변수가 모두 설정되지 않았습니다.' }, 503, cors);
     }
 
     if (!isAllowedOrigin(origin, env.ALLOWED_ORIGIN)) {
@@ -27,6 +35,8 @@ export default {
         const body = await request.json();
         validatePath(body.path, 'assets/uploads/');
         if (!body.content) throw new Error('이미지 내용이 없습니다.');
+        if (!/^[A-Za-z0-9+/=]+$/.test(body.content)) throw new Error('이미지 데이터 형식이 올바르지 않습니다.');
+        if (body.content.length > 12_000_000) throw new Error('압축된 사진 용량이 너무 큽니다.');
         const result = await putGitHubFile(env, body.path, body.content, body.message || 'Upload homepage image');
         return json({ ok: true, path: body.path, commit: result.commit?.sha || '' }, 200, cors);
       }
@@ -60,6 +70,17 @@ function isAllowedOrigin(origin, allowed) {
   return origin.replace(/\/$/, '') === allowed.replace(/\/$/, '');
 }
 
+function requiredEnvironmentReady(env) {
+  return Boolean(
+    env.ADMIN_KEY &&
+    env.GITHUB_TOKEN &&
+    env.GITHUB_OWNER &&
+    env.GITHUB_REPO &&
+    env.GITHUB_BRANCH &&
+    env.ALLOWED_ORIGIN
+  );
+}
+
 function corsHeaders(origin, allowed) {
   const useOrigin = isAllowedOrigin(origin, allowed) && origin ? origin : (allowed || '*');
   return {
@@ -76,7 +97,13 @@ function json(value, status, cors) {
 }
 
 function validatePath(path, prefix) {
-  if (!path || typeof path !== 'string' || !path.startsWith(prefix) || path.includes('..')) {
+  if (
+    !path ||
+    typeof path !== 'string' ||
+    !path.startsWith(prefix) ||
+    path.includes('..') ||
+    !/^assets\/uploads\/\d{4}\/\d{2}\/[A-Za-z0-9._-]+\.webp$/.test(path)
+  ) {
     throw new Error('허용되지 않은 파일 경로입니다.');
   }
 }
