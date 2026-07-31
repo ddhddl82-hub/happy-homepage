@@ -90,6 +90,27 @@
   ],
   "gallery": [
     {
+      "category": "forest",
+      "title": "원어민 숲데이",
+      "desc": "신나는 숲! 즐거운 숲!",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/b93eed0f-842c-4777-a695-40fdcc8217c0.webp"
+    },
+    {
+      "category": "event",
+      "title": "첫돌잔치",
+      "desc": "한끗 다른 행복한 돌잔치",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/e49889c2-13b5-4ed3-bbbe-9f7cb6d1c23e.webp"
+    },
+    {
+      "category": "event",
+      "title": "반딧불이",
+      "desc": "반짝반짝 세상에서 제일 귀여운 반딧불이",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/2ffc496d-c729-43f9-bace-798766185464.webp"
+    },
+    {
       "category": "food",
       "title": "자장놀이 오감",
       "desc": "자장가루로 얼마나 재미있게 놀아봤니?",
