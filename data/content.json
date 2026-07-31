@@ -91,6 +91,27 @@
   "gallery": [
     {
       "category": "food",
+      "title": "자장놀이 오감",
+      "desc": "자장가루로 얼마나 재미있게 놀아봤니?",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/d27e0e44-7c3a-4fcb-8d39-f3c97ea81ac5.webp"
+    },
+    {
+      "category": "food",
+      "title": "자장놀이",
+      "desc": "자장가루가 물과 만나면?",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/02c752cb-5dd8-42dc-a6c4-c6dad4caf176.webp"
+    },
+    {
+      "category": "event",
+      "title": "바닷속 이야기",
+      "desc": "어린이집이 바닷속으로 변했어요!",
+      "date": "2026.07",
+      "image": "assets/uploads/2026/07/250c8dc5-67a4-439a-ac54-e41a070392bf.webp"
+    },
+    {
+      "category": "food",
       "title": "그림책 푸드오감놀이",
       "desc": "재료를 만지고 맛보는 즐거운 시간",
       "date": "2026.07",
